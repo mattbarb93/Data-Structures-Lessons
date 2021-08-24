@@ -28,6 +28,11 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -56,80 +61,120 @@ restaurant.orderDelivery({
   address: 'Onga',
 });
 
-// OBJECT DESTRUCTURING
+//REST PATTERN
 
-//Basic destructuring
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+//SPREAD is on the right side of the operator =
+const arr = [1, 2, ...[3, 4]];
 
-//Renaming new variables
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+//REST is on the left side of the operator =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-//Setting default values. If you set it to an empty array, but the original has data, the data will be copied without a problem.
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
-
-// Mutating variables while destructuring objects
-let a = 111;
-let b = 999;
-
-const obj = { a: 23, b: 7, c: 14 };
-
-({ a, b } = obj); //Wrap it under parenthesis for it to work
-console.log(a, b);
-
-// Nested Objects
-const {
-  fri: { open, close }, //Destructure to a deeper level
-} = openingHours;
-console.log(open, close);
-
-const arr = [7, 8, 9];
-const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArray);
-
-const newArr = [1, 2, ...arr];
-console.log(newArr);
-
-const newMenu = [...restaurant.mainMenu, 'Gnochi'];
-console.log(newMenu);
-
-//Copy Array
-const mainMenuCopy = [...restaurant.mainMenu];
-
-//Joining 2 arrays or more
-const newMenu2 = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(newMenu2);
-
-// Iterables: arrays, strings, maps, sets, NOT Objects
-const str = 'Jonas';
-const letters = [...str, ' ', 's.'];
-console.log(letters);
-console.log(...str);
-
-//Real world example
-const ingredients = [
-  prompt(`Let's make pasta! Ingredient 1?`),
-  prompt(`Ingredient 2?`),
-  prompt(`Ingredient 3?`),
+const [pizza, risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
 
-//restaurant.orderPasta(...ingredients);
+console.log(pizza, risotto, otherFood);
 
 //Objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Bob' };
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-console.log(newRestaurant);
+// 2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+add(2, 3);
+add(2, 3, 6, 7);
+add(2, 3, 6, 7, 9);
+
+const x = [23, 5, 7];
+add(...x); //Spread
+
+restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+
+// // OBJECT DESTRUCTURING
+
+// //Basic destructuring
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+
+// //Renaming new variables
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
+
+// //Setting default values. If you set it to an empty array, but the original has data, the data will be copied without a problem.
+// const { menu = [], starterMenu: starters = [] } = restaurant;
+// console.log(menu, starters);
+
+// // Mutating variables while destructuring objects
+// let a = 111;
+// let b = 999;
+
+// const obj = { a: 23, b: 7, c: 14 };
+
+// ({ a, b } = obj); //Wrap it under parenthesis for it to work
+// console.log(a, b);
+
+// // Nested Objects
+// const {
+//   fri: { open, close }, //Destructure to a deeper level
+// } = openingHours;
+// console.log(open, close);
+
+// const arr = [7, 8, 9];
+// const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArray);
+
+//SPREAD OPERATOR
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// const newMenu = [...restaurant.mainMenu, 'Gnochi'];
+// console.log(newMenu);
+
+// //Copy Array
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// //Joining 2 arrays or more
+// const newMenu2 = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(newMenu2);
+
+// // Iterables: arrays, strings, maps, sets, NOT Objects
+// const str = 'Jonas';
+// const letters = [...str, ' ', 's.'];
+// console.log(letters);
+// console.log(...str);
+
+// //Real world example
+// const ingredients = [
+//   prompt(`Let's make pasta! Ingredient 1?`),
+//   prompt(`Ingredient 2?`),
+//   prompt(`Ingredient 3?`),
+// ];
+
+// //restaurant.orderPasta(...ingredients);
+
+// //Objects
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Bob' };
+
+// console.log(newRestaurant);
+
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
 // ARRAY DESTRUCTURING
 
