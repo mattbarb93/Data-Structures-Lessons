@@ -49,56 +49,80 @@ const restaurant = {
   },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Onga',
-});
+const matt = ['ooga', 'booga', 'fr'];
 
-//REST PATTERN
+for (const [number, monkiNoise] of matt.entries()) {
+  console.log(`${number + 1}: ${monkiNoise}`);
+}
 
-//SPREAD is on the right side of the operator =
-const arr = [1, 2, ...[3, 4]];
+/*FOR OF LOOP
+//for (const [NAME OF INDIVIDUAL ITEM INSIDE ARRAY] of [ARRAY YOU WANNA LOOP]) {
+}
+*/
+for (const item of menu) console.log(item);
 
-//REST is on the left side of the operator =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
 
-const [pizza, risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
+//USING DESTRUCTURING
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+//console.log([...menu.entries()]);
 
-console.log(pizza, risotto, otherFood);
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
 
-//Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Onga',
+// });
 
-// 2) Functions
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-};
+// //REST PATTERN
 
-add(2, 3);
-add(2, 3, 6, 7);
-add(2, 3, 6, 7, 9);
+// //SPREAD is on the right side of the operator =
+// const arr = [1, 2, ...[3, 4]];
 
-const x = [23, 5, 7];
-add(...x); //Spread
+// //REST is on the left side of the operator =
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
 
-restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// const [pizza, risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+
+// console.log(pizza, risotto, otherFood);
+
+// //Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
+
+// // 2) Functions
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// };
+
+// add(2, 3);
+// add(2, 3, 6, 7);
+// add(2, 3, 6, 7, 9);
+
+// const x = [23, 5, 7];
+// add(...x); //Spread
+
+// restaurant.orderPizza('mushroom', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 
 // // OBJECT DESTRUCTURING
 
