@@ -22,7 +22,7 @@ const openingHours = {
   },
 };
 
-console.log(openingHours);
+//console.log(openingHours);
 
 // Data needed for first part of the section
 const restaurant = {
@@ -79,60 +79,81 @@ const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 //LOOPING OVER OBJECTS
 
+//Property Names
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+//Property VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+//Entire Object
+
+const entries = Object.entries(openingHours);
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
 //<----------------------------------------------------->
 //OPTIONAL CHAINING//
 //If a certain property doesnt exist, undefined returns immediately
 
 //Without Option Chaining
-if (restaurant.openingHours && restaurant.openingHours.mon) {
-  console.log(restaurant.openingHours.mon.open);
-}
+// if (restaurant.openingHours && restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
 
-//With Optional Chaining
+// //With Optional Chaining
 
-//ONLY if Monday property exists, meaning not null or undefined, it'll be displayed
-console.log(restaurant.openingHours.mon?.open);
+// //ONLY if Monday property exists, meaning not null or undefined, it'll be displayed
+// console.log(restaurant.openingHours.mon?.open);
 
-//ONLY if Opening Hours, and Monday properties exist
-console.log(restaurant.openingHours?.mon?.open);
+// //ONLY if Opening Hours, and Monday properties exist
+// console.log(restaurant.openingHours?.mon?.open);
 
-//PRACTICAL EXAMPLE
-//PRINT THE HOURS OF THE DAYS WHERE THE RESTAURANT IS OPEN
+// //PRACTICAL EXAMPLE
+// //PRINT THE HOURS OF THE DAYS WHERE THE RESTAURANT IS OPEN
 
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? 'closed'; //same as openingHours.mon
-  console.log(`On ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed'; //same as openingHours.mon
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
-//Methods
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'); //Doesnt exist
+// //Methods
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'); //Doesnt exist
 
-//Array
-const users = [{ name: 'Jonas', email: 'hello@jonas.com' }];
+// //Array
+// const users = [{ name: 'Jonas', email: 'hello@jonas.com' }];
 
-console.log(users[0]?.name ?? 'User array empty'); //Display if it exists. MUCH SIMPLER THAN if else, and a bunch of checks
+// console.log(users[0]?.name ?? 'User array empty'); //Display if it exists. MUCH SIMPLER THAN if else, and a bunch of checks
 
-//<-------------------------------------------------->
+// //<-------------------------------------------------->
 
-/*FOR OF LOOP
-//for (const [NAME OF INDIVIDUAL ITEM INSIDE ARRAY] of [ARRAY YOU WANNA LOOP]) {
-}
-*/
-for (const item of menu) {
-  console.log(item);
-}
+// /*FOR OF LOOP
+// //for (const [NAME OF INDIVIDUAL ITEM INSIDE ARRAY] of [ARRAY YOU WANNA LOOP]) {
+// }
+// */
+// for (const item of menu) {
+//   console.log(item);
+// }
 
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
-}
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
 
-//USING DESTRUCTURING
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-}
+// //USING DESTRUCTURING
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
 //console.log([...menu.entries()]);
 
 // restaurant.orderDelivery({
