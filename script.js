@@ -100,51 +100,132 @@ for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-//SETS
+// //SETS
 
-//Sets only add unique values. Duplicates WILL BE REMOVED.
-const ordersSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Risotto',
-  'Pasta',
-  'Pizza',
+// //Sets only add unique values. Duplicates WILL BE REMOVED.
+// const ordersSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+// //Duplicates are removed
+// console.log(ordersSet);
+
+// //It's .size, not .length
+// console.log(ordersSet.size);
+
+// //Similar to the "includes" method in arrays, use "has" to see if something exists
+// console.log(ordersSet.has('Pizza'));
+// console.log(ordersSet.has('Bread'));
+
+// //Adding
+// ordersSet.add('Garlic Bread');
+// ordersSet.add('Garlic Bread');
+
+// //Removing
+// ordersSet.delete('Risotto');
+// console.log(ordersSet);
+
+// //Retrieving values from Sets? There's no need, you just use the set to see what's inside, not a specific value.
+
+// //Looping sets
+// for (const order of ordersSet) {
+//   console.log(order);
+// }
+
+// //EXAMPLE: Show which positions are in a restaurant
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// // Use spread operator on the iterable, to upack the entire set into a new array
+// const staffUnique = [...new Set(staff)];
+
+// console.log(staffUnique);
+
+// //EXAMPLE: WHAT LETTERS ARE IN A STRING
+// console.log(new Set('oogabooga').size);
+
+// //MAPS - Data Structure to map values to keys.
+
+// //Set it up empty first
+// const rest = new Map();
+
+// //Adding sets
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbon, Portugal');
+// console.log(rest);
+
+// //You can chain set additions
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open!')
+//   .set(false, 'We are closed!');
+
+// //To find values
+// console.log(rest.get('name')); //Returns Clasico Italiano
+// console.log(rest.get(true)); //Returns We are open!
+
+// //Comparing Set values (dont overuse it, since its harder to read)
+// const time = 8;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// //Checking if a value exists
+// console.log(rest.has('categories'));
+
+// //Deleting
+// rest.delete(2);
+// console.log(rest);
+
+// //Size property
+// console.log(rest.size);
+
+// //Clearing Maps
+// //rest.clear();
+// //console.log(rest);
+
+// //You can use arrays or objects as map keys
+// const arr = [1, 2]; //You have to name them beforehand tho
+// rest.set(arr, 'Test');
+// console.log(rest.get(arr));
+
+//MAPS: ITERATION
+
+const question = new Map([
+  ['question', 'what is the best programming language?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct! '],
+  [false, 'False!'],
 ]);
-//Duplicates are removed
-console.log(ordersSet);
+console.log(question);
 
-//It's .size, not .length
-console.log(ordersSet.size);
+//Convertinig object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
 
-//Similar to the "includes" method in arrays, use "has" to see if something exists
-console.log(ordersSet.has('Pizza'));
-console.log(ordersSet.has('Bread'));
+console.log(hoursMap);
 
-//Adding
-ordersSet.add('Garlic Bread');
-ordersSet.add('Garlic Bread');
-
-//Removing
-ordersSet.delete('Risotto');
-console.log(ordersSet);
-
-//Retrieving values from Sets? There's no need, you just use the set to see what's inside, not a specific value.
-
-//Looping sets
-for (const order of ordersSet) {
-  console.log(order);
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 }
+//DISPLAY CORRECT ANSWER IF IT MATCHES
+//const answer = Number(prompt('Your answer'));
+// if (answer === question.get('correct')) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// }
 
-//EXAMPLE: Show which positions are in a restaurant
-const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
-// Use spread operator on the iterable, to upack the entire set into a new array
-const staffUnique = [...new Set(staff)];
-
-console.log(staffUnique);
-
-//EXAMPLE: WHAT LETTERS ARE IN A STRING
-console.log(new Set('oogabooga').size);
+//CONVERT MAP TO ARRAY
+console.log([...question]);
+console.log([...question.keys()]);
+console.log([...question.values()]);
 //<----------------------------------------------------->
 //OPTIONAL CHAINING//
 //If a certain property doesnt exist, undefined returns immediately
