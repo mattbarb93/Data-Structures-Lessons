@@ -100,6 +100,51 @@ for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
+//SETS
+
+//Sets only add unique values. Duplicates WILL BE REMOVED.
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+//Duplicates are removed
+console.log(ordersSet);
+
+//It's .size, not .length
+console.log(ordersSet.size);
+
+//Similar to the "includes" method in arrays, use "has" to see if something exists
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+
+//Adding
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+
+//Removing
+ordersSet.delete('Risotto');
+console.log(ordersSet);
+
+//Retrieving values from Sets? There's no need, you just use the set to see what's inside, not a specific value.
+
+//Looping sets
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+//EXAMPLE: Show which positions are in a restaurant
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// Use spread operator on the iterable, to upack the entire set into a new array
+const staffUnique = [...new Set(staff)];
+
+console.log(staffUnique);
+
+//EXAMPLE: WHAT LETTERS ARE IN A STRING
+console.log(new Set('oogabooga').size);
 //<----------------------------------------------------->
 //OPTIONAL CHAINING//
 //If a certain property doesnt exist, undefined returns immediately
